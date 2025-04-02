@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles'
+    'django.contrib.staticfiles',
     'rest_framework',
     'tracker'
 ]
@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'fitness_tracker.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'Fitness_tracker_api',
+        'USER': 'root',
+        'PASSWORD': 'bright101',
+        'HOST': 'localhost',
+        'POST': '3306'
     }
 }
 
