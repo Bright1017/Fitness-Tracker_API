@@ -11,16 +11,20 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+SECRET = os.environ.get('SECRET_KEY')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-&lzr)ea5f29wzck)5x(w)4!k%ryr($s$ee*=0sl1qe50lc)lvw'
+SECRET_KEY = SECRET
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -39,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'tracker',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -78,11 +83,11 @@ WSGI_APPLICATION = 'fitness_tracker.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Fitness_tracker_api',
-        'USER': 'root',
-        'PASSWORD': 'bright101',
-        'HOST': 'localhost',
-        'POST': '3306'
+        'NAME': os.environ.get('NAME'),
+        'USER': os.environ.get('ROOT'),
+        'PASSWORD': os.environ.get('PASSWORD'),
+        'HOST': os.environ.get('HOST'),
+        'POST': os.environ.get('POST')
     }
 }
 
@@ -137,4 +142,4 @@ REST_FRAMEWORK = {
     ]
 }
 
-AUTH_USER_MODEL = 'tracker.User'
+AUTH_USER_MODEL = 'tracker.CustomUser'
