@@ -46,3 +46,20 @@ class ActivitySerializer(serializers.ModelSerializer):
                 )
 
         return data
+    
+class ActivityHistorySerializer(serializers.ModelSerializer):
+    activity_type = serializers.CharField(source='get_activity_type_display')
+    date = serializers.DateTimeField(format='%Y-%m-%d %H:%M')
+    
+    class Meta:
+        model = Activity
+        fields = [
+            'id', 
+            'activity_type', 
+            'duration', 
+            'calories', 
+            'date',
+            'distance',
+            'distance_unit'
+        ]
+        read_only_fields = fields
